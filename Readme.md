@@ -1,4 +1,5 @@
 ------------Pang----------------------------
+
 https://github.com/firefly2442/pang
 
 
@@ -29,7 +30,9 @@ Building:
 License information:
 
 Linden Hill font is under the MIT license.
+
 http://crudfactory.com/font/show/lindenhill
+
 http://opensource.org/licenses/mit-license.php
 
 Copyright (c) 2010 Barry Schwartz
