@@ -9,6 +9,7 @@
 
 
 #include "SplashScreen.h"
+#include "Game.h"
 
 void SplashScreen::Show(sf::RenderWindow &renderWindow)
 {
@@ -18,7 +19,7 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow)
 	}
 
 	sf::Text text("Pang", font, 40);
-	text.setPosition(800/3, 600/3);
+	text.setPosition(Game::SCREEN_WIDTH/3, Game::SCREEN_HEIGHT/3);
 
 	renderWindow.draw(text);
 
