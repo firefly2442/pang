@@ -53,7 +53,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 #See the FindSFML.cmake file for additional details and instructions
 find_package(SFML 2 REQUIRED system window graphics network audio)
 if(SFML_FOUND)
-  message("SFML found.")
+  message(STATUS "SFML found.")
   include_directories(${SFML_INCLUDE_DIR})
   target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
 endif()
@@ -65,7 +65,7 @@ pang_set_option(PANG_BUILD_DOC FALSE BOOL "TRUE to generate the documentation, F
 # Detect and add SFGUI
 find_package(SFGUI REQUIRED)
 if(SFGUI_FOUND)
-  message("SFGUI found.")
+  message(STATUS "SFGUI found.")
   include_directories(${SFGUI_INCLUDE_DIR})
   target_link_libraries(${EXECUTABLE_NAME} ${SFGUI_LIBRARY})
 endif()
