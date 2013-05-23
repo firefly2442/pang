@@ -25,6 +25,7 @@ http://sfgui.sfml-dev.de/
 Building:
 
 -It uses CMake, just specify SFML and SFGUI and away you go
+-A C++ 11 compiler is required.
 
 
 License information:
