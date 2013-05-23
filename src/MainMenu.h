@@ -14,6 +14,7 @@ public:
     {
         Nothing,
         Exit,
+        Preferences,
         Play
     };
 
@@ -21,9 +22,9 @@ public:
     MenuResult Show(sf::RenderWindow& window);
 
 private:
-
     MenuResult GetMenuResponse(sf::RenderWindow& window);
     void ClickPlay();
+    void ClickPref();
     void ClickExit();
 
     MenuResult clickedMenuValue;

@@ -19,7 +19,7 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow)
 	}
 
 	sf::Text text("Pang", font, 40);
-	text.setPosition(Game::SCREEN_WIDTH/3, Game::SCREEN_HEIGHT/3);
+	text.setPosition(Game::width/3, Game::height/3);
 
 	renderWindow.draw(text);
 

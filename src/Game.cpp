@@ -9,6 +9,7 @@
 
 #include "Game.h"
 #include "MainMenu.h"
+#include "PreferencesMenu.h"
 #include "SplashScreen.h"
 #include "SFMLSoundProvider.h"
 #include "ServiceLocator.h"
@@ -19,24 +20,23 @@ void Game::Start(void)
     if(_gameState != Uninitialized)
         return;
 
-    _mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Pang");
+    _mainWindow.create(sf::VideoMode(Game::width, Game::height, 32), "Pang");
 
     //_mainWindow.SetFramerateLimit(60);
 
-    SFMLSoundProvider soundProvider;
     ServiceLocator::RegisterServiceLocator(&soundProvider);
 
 	// use "sndfile-info" and "ogginfo" to check validity of .ogg files
     soundProvider.PlaySong("resources/sound/Soundtrack.ogg", true);
 
     PlayerPaddle *player1 = new PlayerPaddle();
-    player1->SetPosition((SCREEN_WIDTH/2)-45, 500);
+    player1->SetPosition((Game::width/2)-45, Game::height-50);
 
     AIPaddle *player2 = new AIPaddle();
-    player2->SetPosition((SCREEN_WIDTH/2)-45, 30);
+    player2->SetPosition((Game::width/2)-45, 30);
 
     GameBall *ball = new GameBall();
-    ball->SetPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    ball->SetPosition(Game::width/2, Game::height/2);
 
     _gameObjectManager.Add("Paddle1", player1);
     _gameObjectManager.Add("Paddle2", player2);
@@ -80,6 +80,11 @@ void Game::GameLoop()
 		case Game::ShowingMenu:
 		{
 		    ShowMenu();
+		    break;
+		}
+		case Game::ShowingPreferencesMenu:
+		{
+		    ShowPreferences();
 		    break;
 		}
 		case Game::ShowingSplash:
@@ -130,6 +135,12 @@ void Game::ShowMenu()
 		    _gameState = Game::Playing;
 		    break;
 		}
+		case MainMenu::Preferences:
+		{
+		    std::cout << "Opening preferences menu..." << std::endl;
+		    _gameState = Game::ShowingPreferencesMenu;
+		    break;
+		}
 		case MainMenu::Exit:
 		{
 		    std::cout << "Exiting..." << std::endl;
@@ -139,6 +150,14 @@ void Game::ShowMenu()
     }
 }
 
+void Game::ShowPreferences()
+{
+    PreferencesMenu prefMenu;
+    prefMenu.Show(_mainWindow);
+
+    _gameState = ShowingMenu;
+}
+
 
 const GameObjectManager& Game::GetGameObjectManager()
 {
@@ -146,6 +165,10 @@ const GameObjectManager& Game::GetGameObjectManager()
 }
 
 
+SFMLSoundProvider Game::soundProvider;
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;
+
+bool PreferencesMenu::playingMusic = true;
+bool PreferencesMenu::fullscreenMode = false;

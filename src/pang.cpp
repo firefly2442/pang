@@ -31,3 +31,7 @@ int main(int argc, char** argv)
 
     return EXIT_SUCCESS;
 }
+
+int Game::width = 800;
+int Game::height = 600;
+

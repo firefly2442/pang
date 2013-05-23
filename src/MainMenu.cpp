@@ -36,17 +36,21 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
     box = sfg::Box::Create(sfg::Box::VERTICAL);
 
     sfg::Button::Ptr playButton = sfg::Button::Create();
+    sfg::Button::Ptr prefButton = sfg::Button::Create();
     sfg::Button::Ptr exitButton = sfg::Button::Create();
     playButton->SetLabel("Play Pang");
+    prefButton->SetLabel("Preferences");
     exitButton->SetLabel("Exit");
 
     playButton->GetSignal(sfg::Widget::OnLeftClick).Connect(&MainMenu::ClickPlay, this);
+    prefButton->GetSignal(sfg::Widget::OnLeftClick).Connect(&MainMenu::ClickPref, this);
     exitButton->GetSignal(sfg::Widget::OnLeftClick).Connect(&MainMenu::ClickExit, this);
 
     box->Pack(playButton);
+    box->Pack(prefButton);
     box->Pack(exitButton);
 
-    box->SetSpacing(5.f);
+    box->SetSpacing(5.0f);
 
     sfguiWindow->Add(box);
 
@@ -56,6 +60,11 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
 void MainMenu::ClickPlay()
 {
     clickedMenuValue = Play;
+}
+
+void MainMenu::ClickPref()
+{
+    clickedMenuValue = Preferences;
 }
 
 void MainMenu::ClickExit()
@@ -72,7 +81,6 @@ MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow& window)
 
     while(true)
     {
-
         while(window.pollEvent(event))
         {
             if((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) ||

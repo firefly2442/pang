@@ -5,6 +5,7 @@
 #include "PlayerPaddle.h"
 #include "GameBall.h"
 #include "GameObjectManager.h"
+#include "SFMLSoundProvider.h"
 
 class Game
 {
@@ -15,8 +16,11 @@ public:
     const static sf::Event& GetInput();
     const static GameObjectManager& GetGameObjectManager();
 
-    const static int SCREEN_WIDTH = 800;
-    const static int SCREEN_HEIGHT = 600;
+    static SFMLSoundProvider soundProvider;
+
+    static int width;
+    static int height;
+
 
 private:
     static bool IsExiting();
@@ -24,6 +28,7 @@ private:
 
     static void ShowSplashScreen();
     static void ShowMenu();
+    static void ShowPreferences();
 
     enum GameState
     {
@@ -31,6 +36,7 @@ private:
         ShowingSplash,
         Paused,
         ShowingMenu,
+        ShowingPreferencesMenu,
         Playing,
         Exiting
     };

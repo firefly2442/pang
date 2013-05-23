@@ -51,7 +51,7 @@ void GameBall::Update(float elapsedTime)
 
 
     //collide with the left side of the screen
-    if (GetPosition().x + moveByX <= 0 + GetWidth()/2 || GetPosition().x + GetHeight()/2 + moveByX >= Game::SCREEN_WIDTH)
+    if (GetPosition().x + moveByX <= 0 + GetWidth()/2 || GetPosition().x + GetHeight()/2 + moveByX >= Game::width)
     {
         //Ricochet!
         _angle = 360.0f - _angle;
@@ -108,11 +108,11 @@ void GameBall::Update(float elapsedTime)
             moveByY = -moveByY;
         }
 
-        if(GetPosition().y + GetHeight()/2 + moveByY >= Game::SCREEN_HEIGHT)
+        if(GetPosition().y + GetHeight()/2 + moveByY >= Game::height)
         {
             std::cout << "Moving to middle screen..." << std::endl;
             // move to middle of the screen for now and randomize angle
-            GetSprite().setPosition(Game::SCREEN_WIDTH/2, Game::SCREEN_HEIGHT/2);
+            GetSprite().setPosition(Game::width/2, Game::height/2);
             _angle = (std::rand()%360)+1;
             _velocity = 230.0f;
             _elapsedTimeSinceStart = 0.0f;

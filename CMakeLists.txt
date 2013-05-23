@@ -41,6 +41,8 @@ SET(SOURCES
 	src/AIPaddle.cpp
 	src/ServiceLocator.h
 	src/ServiceLocator.cpp
+	src/PreferencesMenu.h
+	src/PreferencesMenu.cpp
 )
 
 add_executable(${EXECUTABLE_NAME} ${SOURCES})
