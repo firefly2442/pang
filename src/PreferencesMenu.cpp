@@ -33,8 +33,8 @@ void PreferencesMenu::Show(sf::RenderWindow& window)
 
     //New widgets will be incrementally added vertically
     sfg::Box::Ptr box = sfg::Box::Create(sfg::Box::VERTICAL);
+    sfg::Box::Ptr box_res = sfg::Box::Create(sfg::Box::HORIZONTAL);
 
-    //@TODO: fix button and dropdown sizes, too big
     soundToggle = sfg::CheckButton::Create("Sound");
     sfg::Label::Ptr resolutionLabel = sfg::Label::Create("Resolution:");
     resolutionComboBox = sfg::ComboBox::Create();
@@ -75,14 +75,17 @@ void PreferencesMenu::Show(sf::RenderWindow& window)
     }
 
     box->Pack(soundToggle);
-    box->Pack(resolutionLabel);
-    box->Pack(resolutionComboBox);
+
+    box_res->Pack(resolutionLabel, false, false);
+    box_res->Pack(resolutionComboBox, false, true); //don't expand
+
+    box->Pack(box_res, false, true);
     box->Pack(fullscreenToggle);
 
     // Add separator to box and set not to expand.
 	box->Pack(separator, false, true);
 
-	box->Pack(backButton);
+	box->Pack(backButton, false, true); //don't expand
 
     box->SetSpacing(5.0f);
 
