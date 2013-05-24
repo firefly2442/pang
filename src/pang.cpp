@@ -32,6 +32,8 @@ int main(int argc, char** argv)
     return EXIT_SUCCESS;
 }
 
+//@TODO: figure out the desktop resolution and use that instead of defaulting
+//to this set resolution and aspect ratio
 int Game::width = 800;
 int Game::height = 600;
 

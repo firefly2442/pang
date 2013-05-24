@@ -34,6 +34,7 @@ void PreferencesMenu::Show(sf::RenderWindow& window)
     //New widgets will be incrementally added vertically
     sfg::Box::Ptr box = sfg::Box::Create(sfg::Box::VERTICAL);
 
+    //@TODO: fix button and dropdown sizes, too big
     soundToggle = sfg::CheckButton::Create("Sound");
     sfg::Label::Ptr resolutionLabel = sfg::Label::Create("Resolution:");
     resolutionComboBox = sfg::ComboBox::Create();

@@ -108,8 +108,10 @@ void Game::GameLoop()
 
 		    if (currentEvent.type == sf::Event::KeyPressed)
 		    {
-		        if (currentEvent.key.code == sf::Keyboard::Escape)
-		            ShowMenu();
+		        if (currentEvent.key.code == sf::Keyboard::Escape) {
+		            //@TODO: pause game here instead of going back to main menu
+		            _gameState = Game::ShowingMenu;
+		        }
 		    }
 		    break;
 		}
