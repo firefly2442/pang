@@ -72,6 +72,14 @@ if(SFGUI_FOUND)
   target_link_libraries(${EXECUTABLE_NAME} ${SFGUI_LIBRARY})
 endif()
 
+# Detect and add sfeMovie
+find_package(sfeMovie REQUIRED)
+if(SFEMOVIE_FOUND)
+  message(STATUS "sfeMovie found.")
+  include_directories(${SFEMOVIE_INCLUDE_DIR})
+  target_link_libraries(${EXECUTABLE_NAME} ${SFEMOVIE_LIBRARY})
+endif()
+
 if(PANG_BUILD_DOC)
     add_subdirectory(doc)
 endif()

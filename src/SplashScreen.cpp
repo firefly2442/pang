@@ -3,6 +3,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 
+#include <sfeMovie/Movie.hpp>
+
 #include <map>
 #include <iostream>
 #include <cassert>
@@ -13,17 +15,16 @@
 
 void SplashScreen::Show(sf::RenderWindow &renderWindow)
 {
-	sf::Font font;
-	if (!font.loadFromFile("resources/font/linden_hill.otf")) {
-		std::cout << "Unable to load font" << std::endl;
-	}
+    // Create and open intro movie
+	sfe::Movie movie;
+	//4:3 aspect ratio video file, OGG Theora format
+	if (!movie.openFromFile("./resources/movies/pang_intro.ogg"))
+		std::cout << "Unable to open intro movie!" << std::endl;
 
-	sf::Text text("Pang", font, 40);
-	text.setPosition(Game::width/3, Game::height/3);
+    // Scale movie to the window drawing area
+	movie.resizeToFrame(0, 0, renderWindow.getSize().x, renderWindow.getSize().y);
 
-	renderWindow.draw(text);
-
-	renderWindow.display();
+	movie.play();
 
     sf::Event event;
     while(true)
@@ -38,5 +39,13 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow)
                 return;
             }
         }
+
+        if(movie.getStatus() == sfe::Movie::Stopped) {
+            return;
+        }
+
+        renderWindow.clear();
+        renderWindow.draw(movie);
+        renderWindow.display();
     }
 }

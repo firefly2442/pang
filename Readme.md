@@ -21,10 +21,12 @@ Requirements:
 http://www.sfml-dev.org/
 -SFGUI (latest development version)
 http://sfgui.sfml-dev.de/
+-sfeMovie
+https://github.com/Yalir/sfeMovie
 
 Building:
 
--It uses CMake, just specify SFML and SFGUI and away you go
+-It uses CMake, just specify SFML, SFGUI, and sfeMovie and away you go
 -A C++ 11 compiler is required.
 
 
