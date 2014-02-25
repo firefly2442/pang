@@ -33,7 +33,7 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
 
     sfg::Box::Ptr box;
     //New widgets will be incrementally added vertically
-    box = sfg::Box::Create(sfg::Box::VERTICAL);
+    box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 5);
 
     sfg::Button::Ptr playButton = sfg::Button::Create();
     sfg::Button::Ptr prefButton = sfg::Button::Create();
@@ -42,9 +42,9 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
     prefButton->SetLabel("Preferences");
     exitButton->SetLabel("Exit");
 
-    playButton->GetSignal(sfg::Widget::OnLeftClick).Connect(&MainMenu::ClickPlay, this);
-    prefButton->GetSignal(sfg::Widget::OnLeftClick).Connect(&MainMenu::ClickPref, this);
-    exitButton->GetSignal(sfg::Widget::OnLeftClick).Connect(&MainMenu::ClickExit, this);
+    playButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&MainMenu::ClickPlay, this));
+    prefButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&MainMenu::ClickPref, this));
+    exitButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&MainMenu::ClickExit, this));
 
     box->Pack(playButton);
     box->Pack(prefButton);

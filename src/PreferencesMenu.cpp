@@ -32,8 +32,8 @@ void PreferencesMenu::Show(sf::RenderWindow& window)
     // also have the ability to lay out your widgets nicely.
 
     //New widgets will be incrementally added vertically
-    sfg::Box::Ptr box = sfg::Box::Create(sfg::Box::VERTICAL);
-    sfg::Box::Ptr box_res = sfg::Box::Create(sfg::Box::HORIZONTAL);
+    sfg::Box::Ptr box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+    sfg::Box::Ptr box_res = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL);
 
     soundToggle = sfg::CheckButton::Create("Sound");
     sfg::Label::Ptr resolutionLabel = sfg::Label::Create("Resolution:");
@@ -42,12 +42,12 @@ void PreferencesMenu::Show(sf::RenderWindow& window)
     sfg::Button::Ptr backButton = sfg::Button::Create("Back");
 
     // Create a separator.
-	sfg::Separator::Ptr separator = sfg::Separator::Create(sfg::Separator::HORIZONTAL);
+	sfg::Separator::Ptr separator = sfg::Separator::Create(sfg::Separator::Orientation::HORIZONTAL);
 
-    soundToggle->GetSignal(sfg::ToggleButton::OnToggle).Connect(&PreferencesMenu::ClickSound, this);
-    resolutionComboBox->GetSignal(sfg::ComboBox::OnSelect).Connect(&PreferencesMenu::ClickResolution, this);
-    fullscreenToggle->GetSignal(sfg::ToggleButton::OnToggle).Connect(&PreferencesMenu::ClickFullscreen, this);
-    backButton->GetSignal(sfg::Widget::OnLeftClick).Connect(&PreferencesMenu::ClickBack, this);
+    soundToggle->GetSignal(sfg::ToggleButton::OnToggle).Connect(std::bind(&PreferencesMenu::ClickSound, this));
+    resolutionComboBox->GetSignal(sfg::ComboBox::OnSelect).Connect(std::bind(&PreferencesMenu::ClickResolution, this));
+    fullscreenToggle->GetSignal(sfg::ToggleButton::OnToggle).Connect(std::bind(&PreferencesMenu::ClickFullscreen, this));
+    backButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&PreferencesMenu::ClickBack, this));
 
     //set sound toggle based on preferences
     if (playingMusic)
