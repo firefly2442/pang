@@ -22,7 +22,7 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow)
 		std::cout << "Unable to open intro movie!" << std::endl;
 
     // Scale movie to the window drawing area
-	movie.resizeToFrame(0, 0, renderWindow.getSize().x, renderWindow.getSize().y);
+	movie.fit(0, 0, renderWindow.getSize().x, renderWindow.getSize().y);
 
 	movie.play();
 
@@ -40,9 +40,11 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow)
             }
         }
 
-        if(movie.getStatus() == sfe::Movie::Stopped) {
+        if(movie.getStatus() == sfe::Stopped) {
             return;
         }
+
+		movie.update();
 
         renderWindow.clear();
         renderWindow.draw(movie);
