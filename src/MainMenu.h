@@ -5,6 +5,7 @@
 
 // Including SFGUI.hpp includes the entire SFGui system
 #include <SFGUI/SFGUI.hpp>
+#include <SFGUI/Widgets.hpp>
 
 class MainMenu
 {
