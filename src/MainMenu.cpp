@@ -80,28 +80,20 @@ MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow& window)
 {
     sf::Event event;
 
-    sfguiWindow->Refresh();
-
-    while(true)
+    while(window.isOpen())
     {
         while(window.pollEvent(event))
         {
+            sfguiWindow->HandleEvent(event);
+
             if((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) ||
                     event.type == sf::Event::Closed
               ) {
                 window.close();
             }
-
-            sfguiWindow->HandleEvent(event);
         }
 
-        if (clickedMenuValue != Nothing)
-        {
-            //@TODO cleanup pointers and other things in memory?
-            return clickedMenuValue;
-        }
-
-        sfguiWindow->Update(0.f);
+        sfguiWindow->Update(1.0f);
         window.clear();
         sfgui.Display(window);
         window.display();

@@ -156,7 +156,6 @@ void PreferencesMenu::ResetWindowResolution()
     //@TODO: this doesn't seem to change the size
     sfguiWindow->SetRequisition(sf::Vector2f((float)Game::width*.8, (float)Game::height*.8));
 
-    sfguiWindow->Refresh();
     Game::GetWindow().resetGLStates();
 }
 
@@ -165,9 +164,7 @@ void  PreferencesMenu::GetMenuResponse(sf::RenderWindow& window)
 {
     sf::Event event;
 
-    sfguiWindow->Refresh();
-
-    while(true)
+    while(window.isOpen())
     {
         while(window.pollEvent(event))
         {
@@ -178,13 +175,7 @@ void  PreferencesMenu::GetMenuResponse(sf::RenderWindow& window)
                 window.close();
         }
 
-        if (clickedValue == Back)
-        {
-            //@TODO cleanup pointers and other things in memory?
-            return;
-        }
-
-        sfguiWindow->Update(0.f);
+        sfguiWindow->Update(1.0f);
         window.clear();
         sfgui.Display(window);
         window.display();
