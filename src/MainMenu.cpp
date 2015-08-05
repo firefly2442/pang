@@ -18,12 +18,9 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
     // We have to do this because we don't use SFML to draw.
     window.resetGLStates();
 
-	// Create an SFGUI. This is required before doing anything with SFGUI.
-	sfg::SFGUI sfgui;
-
     clickedMenuValue = Nothing;
 
-    auto sfguiWindow = sfg::Window::Create();
+    sfguiWindow = sfg::Window::Create();
     sfguiWindow->SetTitle("Pang Main Menu");
 
 	// this sets the minimum size of the window
@@ -91,6 +88,12 @@ MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow& window)
               ) {
                 window.close();
             }
+        }
+
+        if (clickedMenuValue != Nothing)
+        {
+            //@TODO cleanup pointers and other things in memory?
+            return clickedMenuValue;
         }
 
         sfguiWindow->Update(1.0f);

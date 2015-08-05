@@ -18,12 +18,9 @@ void PreferencesMenu::Show(sf::RenderWindow& window)
     // We have to do this because we don't use SFML to draw.
     window.resetGLStates();
 
-	// Create an SFGUI. This is required before doing anything with SFGUI.
-	sfg::SFGUI sfgui;
-
     clickedValue = Nothing;
 
-    auto sfguiWindow = sfg::Window::Create();
+    sfguiWindow = sfg::Window::Create();
     sfguiWindow->SetTitle("Preferences");
 
 	// this sets the minimum size of the window
@@ -173,6 +170,12 @@ void  PreferencesMenu::GetMenuResponse(sf::RenderWindow& window)
             // user closes window
             if (event.type == sf::Event::Closed)
                 window.close();
+        }
+
+        if (clickedValue == Back)
+        {
+            //@TODO cleanup pointers and other things in memory?
+            return;
         }
 
         sfguiWindow->Update(1.0f);
