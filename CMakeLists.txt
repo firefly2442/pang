@@ -25,6 +25,8 @@ SET(SOURCES
 	src/SplashScreen.cpp
 	src/MainMenu.h
 	src/MainMenu.cpp
+	src/Logger.h
+	src/Logger.cpp
 	src/VisibleGameObject.h
 	src/VisibleGameObject.cpp
 	src/PlayerPaddle.h
@@ -49,6 +51,20 @@ add_executable(${EXECUTABLE_NAME} ${SOURCES})
 
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+
+# Look for BOOST
+find_package(Boost REQUIRED COMPONENTS system thread log log_setup)
+if(Boost_FOUND)
+	message(STATUS "BOOST found.")
+
+	#https://stackoverflow.com/questions/17844085/boost-log-with-cmake-causing-undefined-reference-error
+	#http://www.boost.org/doc/libs/1_54_0/libs/log/doc/html/log/rationale/namespace_mangling.html
+	#this is needed to get things to link properly
+	ADD_DEFINITIONS(-DBOOST_LOG_DYN_LINK)
+
+	include_directories(${Boost_INCLUDE_DIRS})
+	target_link_libraries(${EXECUTABLE_NAME} ${Boost_LIBRARIES})
+endif()
 
 # Detect and add SFML
 #Find any version 2.X of SFML

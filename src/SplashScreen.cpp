@@ -12,6 +12,7 @@
 
 #include "SplashScreen.h"
 #include "Game.h"
+#include "Logger.h"
 
 void SplashScreen::Show(sf::RenderWindow &renderWindow)
 {
@@ -19,7 +20,7 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow)
 	sfe::Movie movie;
 	//4:3 aspect ratio video file, OGG Theora format
 	if (!movie.openFromFile("./resources/movies/pang_intro.ogg"))
-		std::cout << "Unable to open intro movie!" << std::endl;
+		ERROR << "Unable to open intro movie!";
 
     // Scale movie to the window drawing area
 	movie.fit(0, 0, renderWindow.getSize().x, renderWindow.getSize().y);
@@ -35,7 +36,7 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow)
                     || event.type == sf::Event::MouseButtonPressed
                     || event.type == sf::Event::Closed )
             {
-                std::cout << "Grabbed user interaction on SplashScreen, continuing on..." << std::endl;
+                INFO << "Grabbed user interaction on SplashScreen, continuing on...";
                 return;
             }
         }

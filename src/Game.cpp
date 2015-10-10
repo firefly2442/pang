@@ -14,6 +14,7 @@
 #include "SFMLSoundProvider.h"
 #include "ServiceLocator.h"
 #include "AIPaddle.h"
+#include "Logger.h"
 
 void Game::Start(void)
 {
@@ -44,7 +45,7 @@ void Game::Start(void)
 
     _gameState= Game::ShowingSplash;
 
-    std::cout << "Showing Splash Screen" << std::endl;
+    INFO << "Showing Splash Screen";
 
     while(!IsExiting())
     {
@@ -133,19 +134,19 @@ void Game::ShowMenu()
     {
 		case MainMenu::Play:
 		{
-		    std::cout << "Starting gameplay..." << std::endl;
+		    INFO << "Starting gameplay...";
 		    _gameState = Game::Playing;
 		    break;
 		}
 		case MainMenu::Preferences:
 		{
-		    std::cout << "Opening preferences menu..." << std::endl;
+		    INFO << "Opening preferences menu...";
 		    _gameState = Game::ShowingPreferencesMenu;
 		    break;
 		}
 		case MainMenu::Exit:
 		{
-		    std::cout << "Exiting..." << std::endl;
+		    INFO << "Exiting...";
 		    _gameState = Game::Exiting;
 		    break;
 		}

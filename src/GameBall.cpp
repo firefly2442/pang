@@ -10,6 +10,7 @@
 
 #include "GameBall.h"
 #include "Game.h"
+#include "Logger.h"
 
 
 GameBall::GameBall() :
@@ -25,7 +26,7 @@ GameBall::GameBall() :
     //Generates a random number between 1 and 360.
     float random_integer = std::rand() % 360 + 1;
     _angle = random_integer;
-    std::cout << "Angle: " << _angle << std::endl;
+    INFO << "Angle: " << _angle;
 }
 
 
@@ -37,7 +38,7 @@ GameBall::~GameBall()
 //Parameter is the time since last frame in seconds. VERY small number.
 void GameBall::Update(float elapsedTime)
 {
-    //std::cout << "Time since last frame: " << elapsedTime << std::endl;
+    //INFO << "Time since last frame: " << elapsedTime;
     _elapsedTimeSinceStart += elapsedTime;
 
     // Delay game from starting until 3 seconds have passed
@@ -110,7 +111,7 @@ void GameBall::Update(float elapsedTime)
 
         if(GetPosition().y + GetHeight()/2 + moveByY >= Game::height)
         {
-            std::cout << "Moving to middle screen..." << std::endl;
+            INFO << "Moving to middle screen...";
             // move to middle of the screen for now and randomize angle
             GetSprite().setPosition(Game::width/2, Game::height/2);
             _angle = (std::rand()%360)+1;
@@ -120,7 +121,7 @@ void GameBall::Update(float elapsedTime)
 
         GetSprite().move(moveByX,moveByY);
     } else {
-        std::cout << "Something bad happened with the casting..." << std::endl;
+        ERROR << "Something bad happened with the casting...";
     }
 }
 

@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 
 #include "SoundFileCache.h"
+#include "Logger.h"
 
 #include <stdexcept>
 

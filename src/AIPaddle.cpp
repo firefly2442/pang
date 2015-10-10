@@ -10,6 +10,7 @@
 #include "AIPaddle.h"
 #include "Game.h"
 #include "GameBall.h"
+#include "Logger.h"
 
 AIPaddle::AIPaddle() :
     _velocity(0),

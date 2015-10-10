@@ -5,6 +5,7 @@
 
 #include "SFMLSoundProvider.h"
 #include "SoundFileCache.h"
+#include "Logger.h"
 
 #include <stdexcept>
 
@@ -36,7 +37,8 @@ void SFMLSoundProvider::PlaySound(std::string filename)
         catch(SoundNotFoundException& snfe)
         {
             // ERROR, file wasnt found, should handle error here
-			//@TODO: fix me
+            ERROR << "sound file not found.";
+			///@todo: fix me
         }
     }
 
@@ -53,6 +55,7 @@ void SFMLSoundProvider::PlaySong(std::string filename, bool looping)
     catch(SoundNotFoundException&)
     {
         // This one is dire, means we couldn't find or load the selected song
+        ERROR << "sound not found exception";
         // So, lets exit!
         return;
     }
@@ -71,6 +74,7 @@ void SFMLSoundProvider::PlaySong(std::string filename, bool looping)
         {
             // Do nothing, this exception isn't dire.  It simply means the previous sound we were
             // trying to stop wasn't located.
+            WARN << "sound attempting to stop not found";
         }
 
     }

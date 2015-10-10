@@ -9,6 +9,7 @@
 
 #include "PlayerPaddle.h"
 #include "Game.h"
+#include "Logger.h"
 
 
 PlayerPaddle::PlayerPaddle() :

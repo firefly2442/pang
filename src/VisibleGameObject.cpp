@@ -9,6 +9,7 @@
 
 
 #include "VisibleGameObject.h"
+#include "Logger.h"
 
 
 VisibleGameObject::VisibleGameObject()

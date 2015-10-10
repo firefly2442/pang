@@ -9,6 +9,7 @@
 
 #include "PreferencesMenu.h"
 #include "Game.h"
+#include "Logger.h"
 
 
 void PreferencesMenu::Show(sf::RenderWindow& window)
@@ -147,7 +148,7 @@ void PreferencesMenu::ResetWindowResolution()
     //set Game resolution properties
     Game::width = res.width;
     Game::height = res.height;
-    std::cout << "Setting resolution: " << res.width << "x" << res.height << std::endl;
+    INFO << "Setting resolution: " << res.width << "x" << res.height;
 
     //Reset SFGUI elements window size
     //@TODO: this doesn't seem to change the size

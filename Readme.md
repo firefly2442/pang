@@ -20,6 +20,7 @@ I've been learning from that.
 * [SFML 2.X](http://www.sfml-dev.org/)
 * [SFGUI](https://github.com/TankOs/SFGUI)
 * [sfeMovie](https://github.com/Yalir/sfeMovie)
+* [Boost](http://www.boost.org/)
 
 ##### Building:
 
