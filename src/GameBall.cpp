@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <map>
 #include <iostream>
@@ -130,8 +131,8 @@ float GameBall::LinearVelocityX(float angle)
     angle -= 90;
     if (angle < 0)
         angle = 360 + angle;
-    //@todo Use BOOST Pi constant
-    return (float)std::cos( angle * ( 3.1415926 / 180.0f ));
+    const double pi = boost::math::constants::pi<float>();
+    return (float)std::cos( angle * ( pi / 180.0f ));
 }
 
 float GameBall::LinearVelocityY(float angle)
@@ -139,6 +140,6 @@ float GameBall::LinearVelocityY(float angle)
     angle -= 90;
     if (angle < 0)
         angle = 360 + angle;
-    //@todo Use BOOST Pi constant
-    return (float)std::sin( angle * ( 3.1415926 / 180.0f ));
+    const double pi = boost::math::constants::pi<float>();
+    return (float)std::sin( angle * ( pi / 180.0f ));
 }
