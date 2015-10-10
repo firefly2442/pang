@@ -1,4 +1,4 @@
-------------Pang----------------------------
+### Pang
 
 https://github.com/firefly2442/pang
 
@@ -10,27 +10,24 @@ http://www.gamefromscratch.com/page/Game-From-Scratch-CPP-Edition.aspx
 Pang, it's kinda like the old game (replace "a" with "o").
 
 I've modified it from the original tutorial by adding SFGUI, porting
-the example to version 2 of SFML, and some other things.  Folks have been
-kind enough to post some examples of SFML 2.0 code here and there so
+the example to version 2.X of SFML, and some other things.  Folks have been
+kind enough to post some examples of SFML 2 code here and there so
 I've been learning from that.
 
 
-Requirements:
+##### Requirements:
 
--SFML (version 2)
-http://www.sfml-dev.org/
--SFGUI (latest development version)
-http://sfgui.sfml-dev.de/
--sfeMovie
-https://github.com/Yalir/sfeMovie
+* [SFML 2.X](http://www.sfml-dev.org/)
+* [SFGUI](https://github.com/TankOs/SFGUI)
+* [sfeMovie](https://github.com/Yalir/sfeMovie)
 
-Building:
+##### Building:
 
--It uses CMake, just specify SFML, SFGUI, and sfeMovie and away you go
--A C++ 11 compiler is required.
+* It uses CMake, just specify SFML, SFGUI, and sfeMovie and away you go
+* A C++ 11 compiler is required.
 
 
-License information:
+##### License information:
 
 Linden Hill font is under the MIT license.
 
