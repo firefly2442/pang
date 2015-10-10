@@ -151,7 +151,7 @@ void PreferencesMenu::ResetWindowResolution()
     INFO << "Setting resolution: " << res.width << "x" << res.height;
 
     //Reset SFGUI elements window size
-    //@TODO: this doesn't seem to change the size
+    ///@todo: this doesn't seem to change the size
     sfguiWindow->SetRequisition(sf::Vector2f((float)Game::width*.8, (float)Game::height*.8));
 
     Game::GetWindow().resetGLStates();
@@ -175,7 +175,7 @@ void  PreferencesMenu::GetMenuResponse(sf::RenderWindow& window)
 
         if (clickedValue == Back)
         {
-            //@TODO cleanup pointers and other things in memory?
+            ///@todo cleanup pointers and other things in memory?
             return;
         }
 

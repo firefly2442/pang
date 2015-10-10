@@ -92,7 +92,7 @@ MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow& window)
 
         if (clickedMenuValue != Nothing)
         {
-            //@TODO cleanup pointers and other things in memory?
+            ///@todo cleanup pointers and other things in memory?
             return clickedMenuValue;
         }
 

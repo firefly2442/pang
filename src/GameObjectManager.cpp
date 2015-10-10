@@ -13,7 +13,7 @@
 #include "Logger.h"
 
 
-///@TODO look into using Boost smart pointers instead
+///@todo look into using Boost smart pointers instead
 
 GameObjectManager::GameObjectManager()
 {

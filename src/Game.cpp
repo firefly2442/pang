@@ -53,7 +53,7 @@ void Game::Start(void)
     }
 
 	// close down app at this point
-	// @TODO: look into memory management and cleanup, is this needed with smart pointers?
+	///@todo: look into memory management and cleanup, is this needed with smart pointers?
 	// we don't want memory leaks!
     _mainWindow.close();
 }
@@ -110,7 +110,7 @@ void Game::GameLoop()
 		    if (currentEvent.type == sf::Event::KeyPressed)
 		    {
 		        if (currentEvent.key.code == sf::Keyboard::Escape) {
-		            //@TODO: pause game here instead of going back to main menu
+		            ///@todo: pause game here instead of going back to main menu
 		            _gameState = Game::ShowingMenu;
 		        }
 		    }
