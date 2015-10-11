@@ -51,6 +51,8 @@ void GameBall::Update(float elapsedTime)
     float moveByX = LinearVelocityX(_angle) * moveAmount;
     float moveByY = LinearVelocityY(_angle) * moveAmount;
 
+    //INFO << GetPosition().x << GetPosition().y;
+
 
     //collide with the left side of the screen
     if (GetPosition().x + moveByX <= 0 + GetWidth()/2 || GetPosition().x + GetHeight()/2 + moveByX >= Game::width)
@@ -113,17 +115,21 @@ void GameBall::Update(float elapsedTime)
         if(GetPosition().y + GetHeight()/2 + moveByY >= Game::height)
         {
             INFO << "Moving to middle screen...";
-            // move to middle of the screen for now and randomize angle
-            GetSprite().setPosition(Game::width/2, Game::height/2);
-            _angle = (std::rand()%360)+1;
-            _velocity = 230.0f;
-            _elapsedTimeSinceStart = 0.0f;
+            Reset();
         }
 
         GetSprite().move(moveByX,moveByY);
     } else {
         ERROR << "Something bad happened with the casting...";
     }
+}
+
+void GameBall::Reset()
+{
+    _elapsedTimeSinceStart = 0.0f;
+    GetSprite().setPosition(Game::width/2, Game::height/2);
+    _angle = (std::rand()%360)+1;
+    _velocity = 230.0f;
 }
 
 float GameBall::LinearVelocityX(float angle)

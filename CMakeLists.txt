@@ -1,5 +1,5 @@
 #Change this if you need to target a specific CMake version
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
 # define a macro that helps defining an option
 macro(pang_set_option var default type docstring)
@@ -100,15 +100,12 @@ if(PANG_BUILD_DOC)
     add_subdirectory(doc)
 endif()
 
-# Look for C++11 support
-include(FindCXX11)
-if(CXX11_FOUND)
-	message(STATUS "Adding C++11 support to compiler flags: " ${CXX11_FLAGS})
-	#list(APPEND CMAKE_CXX_FLAGS "${CXX11_FLAGS}")
-	SET (CMAKE_CXX_FLAGS "${CXX11_FLAGS} -Wshadow" CACHE STRING "" FORCE)
-else()
-	message(FATAL_ERROR "Compiler does not support C++11")
-endif()
+# Check C++ 14 support
+set_property(TARGET ${EXECUTABLE_NAME} PROPERTY CXX_STANDARD 14)
+set_property(TARGET ${EXECUTABLE_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
+
+#TODO: why do we need to manually specify these?
+target_link_libraries(${EXECUTABLE_NAME} -lstdc++ -lpthread -lm)
 
 # Install target
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)

@@ -37,6 +37,7 @@ private:
         Paused,
         ShowingMenu,
         ShowingPreferencesMenu,
+        SetupPlaying,
         Playing,
         Exiting
     };

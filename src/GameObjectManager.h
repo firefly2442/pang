@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 #include "VisibleGameObject.h"
 
@@ -8,7 +9,7 @@ public:
     GameObjectManager();
     ~GameObjectManager();
 
-    void Add(std::string name, VisibleGameObject* gameObject);
+    void Add(std::string name, std::unique_ptr<VisibleGameObject> gameObject);
     void Remove(std::string name);
     int GetObjectCount() const;
     VisibleGameObject* Get(std::string name) const;
@@ -19,7 +20,7 @@ public:
 private:
     //std::map is a key/value pair, keys need to be unique!
     //In this case, the key is the name and the value is the game object
-    std::map<std::string, VisibleGameObject*> _gameObjects;
+    std::map<std::string, std::unique_ptr<VisibleGameObject>> _gameObjects;
 
     sf::Clock clock;
 

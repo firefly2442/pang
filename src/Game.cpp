@@ -6,6 +6,7 @@
 #include <map>
 #include <iostream>
 #include <cassert>
+#include <memory>
 
 #include "Game.h"
 #include "MainMenu.h"
@@ -30,18 +31,18 @@ void Game::Start(void)
 	// use "sndfile-info" and "ogginfo" to check validity of .ogg files
     soundProvider.PlaySong("resources/sound/Soundtrack.ogg", true);
 
-    PlayerPaddle *player1 = new PlayerPaddle();
+    auto player1 = std::make_unique<PlayerPaddle>();
     player1->SetPosition((Game::width/2)-45, Game::height-50);
 
-    AIPaddle *player2 = new AIPaddle();
+    auto player2 = std::make_unique<AIPaddle>();
     player2->SetPosition((Game::width/2)-45, 30);
 
-    GameBall *ball = new GameBall();
+    auto ball = std::make_unique<GameBall>();
     ball->SetPosition(Game::width/2, Game::height/2);
 
-    _gameObjectManager.Add("Paddle1", player1);
-    _gameObjectManager.Add("Paddle2", player2);
-    _gameObjectManager.Add("Ball", ball);
+    _gameObjectManager.Add("Paddle1",  std::move(player1));
+    _gameObjectManager.Add("Paddle2", std::move(player2));
+    _gameObjectManager.Add("Ball", std::move(ball));
 
     _gameState= Game::ShowingSplash;
 
@@ -93,6 +94,15 @@ void Game::GameLoop()
 		    ShowSplashScreen();
 		    break;
 		}
+		case Game::SetupPlaying:
+		{
+            //reset objects
+            GameBall *ball = dynamic_cast<GameBall*>(_gameObjectManager.Get("Ball"));
+            ball->Reset();
+            _gameState = Game::Playing;
+
+            break;
+		}
 		case Game::Playing:
 		{
 		    _mainWindow.clear(sf::Color(255,0,0));
@@ -135,7 +145,7 @@ void Game::ShowMenu()
 		case MainMenu::Play:
 		{
 		    INFO << "Starting gameplay...";
-		    _gameState = Game::Playing;
+		    _gameState = Game::SetupPlaying;
 		    break;
 		}
 		case MainMenu::Preferences:
